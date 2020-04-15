@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const ROOT_DIRECTORY = process.cwd();
+console.log('caminho:', ROOT_DIRECTORY)
 
 module.exports = {
   mode: 'development',
