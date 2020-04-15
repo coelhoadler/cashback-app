@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cashback System</title>
-  </head>
-  <body>
-    <button type="button" class="btn btn-primary">Primary</button>
-    <button type="button" class="btn btn-secondary">Secondary</button>
-    <button type="button" class="btn btn-success">Success</button>
-    <button type="button" class="btn btn-danger">Danger</button>
-    <button type="button" class="btn btn-warning">Warning</button>
-    <button type="button" class="btn btn-info">Info</button>
-    <button type="button" class="btn btn-light">Light</button>
-    <button type="button" class="btn btn-dark">Dark</button>
-    <button type="button" class="btn btn-link">Link</button>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cashback System</title>
+</head>
+
+<body>
+  <div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+      <form class="col-11 col-md-6 card rounded p-3">
+        <div class="form-group col-12">
+          <label for="email">E-mail</label>
+          <input type="email" class="form-control" id="email" aria-describedby="E-mail"
+            placeholder="Entre com seu e-mail...">
+        </div>
+        <div class="form-group col-12">
+          <label for="password">Senha</label>
+          <input type="password" class="form-control" id="password" placeholder="Entre com sua senha...">
+        </div>
+        <div class="form-group col-12">
+          <div class="row">
+            <div class="col-12 col-md-6 col-sm-12">
+              <button type="submit" class="btn btn-block btn-lg btn-light">Logar</button>
+            </div>
+            <div
+              class="col-md-6 col-sm-12 mt-3 mt-md-0 mt-sm-3 d-flex justify-content-center justify-content-sm-center justify-content-md-end align-items-center">
+              <a href="#" class="login__link-new-account">Ainda não tem conta?</a>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+
 </html>
