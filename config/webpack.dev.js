@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const ROOT_DIRECTORY = process.cwd();
-console.log('caminho:', ROOT_DIRECTORY)
+console.log
 
 module.exports = {
   mode: 'development',
@@ -17,7 +17,7 @@ module.exports = {
   devServer: {
     contentBase: path.resolve(ROOT_DIRECTORY, 'build'),
     compress: true,
-    port: 3000,
+    port: 4200,
     overlay: true,
   },
   devtool: 'cheap-module-eval-source-map',
@@ -177,6 +177,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(ROOT_DIRECTORY, 'src/index.html'),
       filename: 'index.html',
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(ROOT_DIRECTORY, 'src/pages/cadastro.html'),
+      filename: 'cadastro.html',
     }),
   ],
 };
