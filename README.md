@@ -14,12 +14,17 @@ Tarefas
 - Criar Server (OK)
 - Conectar com o Mongo (OK)
 
+15/04
+- Criar controller de Sellers (OK)
+- Fazer POST de Seller (OK)
+- Fazer funcionalidade de Login. (OK)
+- criar estilo formulário de cadastro (OK)
+
 Falta fazer
-- Criar controller de Sellers
-- Fazer POST de Seller
+
 - Validar Campos do cadastro de Vendedor
+- Mostrar alerta de "Cadastro realizado com sucesso"
 - Fazer CRUD de Vendas
-- Fazer funcionalidade de Login.
 - E2E
 - Escrever READE.md
 

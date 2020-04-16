@@ -39,8 +39,6 @@ module.exports = {
 
   },
   async store(req, res) {
-    console.log('Cadastra novo vendedor!');
-
     const { name, email, password, document } = req.body;
     const sellerExists = await Seller.findOne({ document });
 
@@ -51,17 +49,24 @@ module.exports = {
       });
     }
 
-    const seller = await Seller.create({
-      name,
-      email,
-      password,
-      document
-    });
+    try {
+      const seller = await Seller.create({
+        name,
+        email,
+        password,
+        document
+      });
 
-    return res.json({
-      success: true,
-      message: 'Vendedor cadastrado com sucesso!'
-    });
+      return res.json({
+        success: true,
+        message: 'Vendedor cadastrado com sucesso!'
+      });
+    } catch ($y) {
+      return res.json({
+        success: false,
+        message: 'Preencha corretamente todos os campos corretamente.'
+      });
+    }
 
   }
 }
