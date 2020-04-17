@@ -22,12 +22,15 @@ Tarefas
 - Fazer funcionalidade de Login. (OK)
 - Criar estilo form de cadastro (OK)
 
+16/06
+- Criar dashboard do revendedor (OK)
+- Criar Tabela dinâmica dasboard (OK)
+
 Falta fazer
 
 - Validar Campos do cadastro de Vendedor
 - Mostrar alerta de "Cadastro realizado com sucesso"
-- Fazer CRUD de Vendas (dashboard)
-- Página de "Sobre o Sistema"
+- Página de "Sobre o Sistema" (Modal)
 - E2E
 - Escrever READE.md
 

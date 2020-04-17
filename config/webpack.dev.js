@@ -182,5 +182,9 @@ module.exports = {
       template: path.resolve(ROOT_DIRECTORY, 'src/pages/cadastro.html'),
       filename: 'cadastro.html',
     }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(ROOT_DIRECTORY, 'src/pages/dashboard/dashboard.html'),
+      filename: 'dashboard.html',
+    }),
   ],
 };

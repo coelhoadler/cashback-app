@@ -1,11 +1,19 @@
 import './styles.scss';
 import 'bootstrap';
 
-import Cadastro from './pages/cadastro'
+import Cadastro from './pages/cadastro';
+import Dashboard from './pages/dashboard/dashboard';
+
+const cadastro = new Cadastro();
+const dashboard = new Dashboard();
 
 const $btnCadastro = document.querySelector('#newSeller');
 const $btnLogin = document.querySelector('#formLogin');
 
+const $btnAddSale = document.querySelector('#addSale');
+const $btnSaveSales = document.querySelector('#saveSales');
+
+// Cadastro
 if ($btnCadastro) {
   $btnCadastro.addEventListener('click', () => {
     const nameInput = querySelector('nameInput');
@@ -13,9 +21,6 @@ if ($btnCadastro) {
     const emailInput = querySelector('emailInput');
     const passwordInput = querySelector('passwordInput');
     const passwordConfirmInput = querySelector('passwordConfirmInput');
-    const cadastro = new Cadastro();
-
-    console.log(passwordInput)
 
     if (passwordInput && passwordConfirmInput) {
       if (passwordInput === passwordConfirmInput) {
@@ -34,21 +39,41 @@ if ($btnCadastro) {
   });
 }
 
+// Login
 if ($btnLogin) {
   $btnLogin.addEventListener('click', async ($event) => {
     $event.preventDefault();
     const email = querySelector('email');
     const password = querySelector('password');
     const cadastro = new Cadastro();
-
-    const xpto = await cadastro.login({email, password: btoa(password)});
-    // TODO: redirecionar para a próxima página
-
+    cadastro.login({email, password: btoa(password)});
+    // TODO: redirecionar para o dashboard
   });
 }
 
+// Dashboard
+if ($btnAddSale) {
+  let row = 0;
+  $btnAddSale.addEventListener('click', () => {
+    const table = document.querySelector('#table-body');
+    table.insertAdjacentHTML('beforeend', dashboard.addNewRow(++row));
 
+    const $btnRmSale = document.querySelectorAll('.rmSale');
+    $btnRmSale.forEach(btn => {
+      btn.addEventListener('click', ($event) => {
+        const id = $event.target.dataset.id;
+        dashboard.removeRow(id);
+      });
+    });
+
+  });
+
+  $btnSaveSales.addEventListener('click', () => {
+    dashboard.saveSales();
+  });
+}
+
+// TODO: Criar classe de Utils
 function querySelector(id) {
   return document.querySelector(`#${id}`).value;
 }
-
