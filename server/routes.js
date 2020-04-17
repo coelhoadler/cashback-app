@@ -8,5 +8,6 @@ routes.get('/', (req, res) => {
 
 routes.post('/sellers/auth', SellersController.auth);
 routes.post('/sellers', SellersController.store);
+routes.put('/sellers/:id', SellersController.update);
 
 module.exports = routes;

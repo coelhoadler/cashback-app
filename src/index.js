@@ -13,6 +13,11 @@ const $btnLogin = document.querySelector('#formLogin');
 const $btnAddSale = document.querySelector('#addSale');
 const $btnSaveSales = document.querySelector('#saveSales');
 
+let currentUser = undefined;
+if (hasLocalstorage()) {
+  currentUser = JSON.parse(window.localStorage.getItem('currentUser'));
+}
+
 // Cadastro
 if ($btnCadastro) {
   $btnCadastro.addEventListener('click', () => {
@@ -46,8 +51,13 @@ if ($btnLogin) {
     const email = querySelector('email');
     const password = querySelector('password');
     const cadastro = new Cadastro();
-    cadastro.login({email, password: btoa(password)});
-    // TODO: redirecionar para o dashboard
+    const currentUser = await cadastro.login({email, password: btoa(password)});
+
+    if (hasLocalstorage()) {
+      window.localStorage.setItem('currentUser', JSON.stringify(currentUser.data));
+    }
+
+    window.location = "/dashboard.html";
   });
 }
 
@@ -69,11 +79,15 @@ if ($btnAddSale) {
   });
 
   $btnSaveSales.addEventListener('click', () => {
-    dashboard.saveSales();
+    dashboard.saveSales(currentUser.id);
   });
 }
 
 // TODO: Criar classe de Utils
 function querySelector(id) {
   return document.querySelector(`#${id}`).value;
+}
+
+function hasLocalstorage() {
+  return !!window.localStorage;
 }

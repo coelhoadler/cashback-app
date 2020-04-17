@@ -11,7 +11,6 @@ export default class Cadastro {
   }
 
   async login(payload) {
-    console.log('payload', payload)
     const seller = await axios.post(`${BASE_PATH}/sellers/auth`, payload);
     return seller;
   }

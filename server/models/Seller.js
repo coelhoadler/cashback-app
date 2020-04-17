@@ -16,7 +16,12 @@ const SellerSchema = new Schema({
     document: {
       type: String,
       required: true,
-    }
+    },
+    sales: [{
+      code: String,
+      price: String,
+      date: String
+    }],
 }, {
     timestamps: true,
 });

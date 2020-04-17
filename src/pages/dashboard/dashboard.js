@@ -1,3 +1,5 @@
+const axios = require('axios');
+const BASE_PATH = 'http://localhost:3000';
 export default class Dashboard {
   constructor() { }
 
@@ -17,7 +19,8 @@ export default class Dashboard {
     }
   }
 
-  saveSales() {
+  saveSales(userId) {
+    console.log(userId);
     const arr = [];
     document.querySelectorAll(`#table-body tr`).forEach(row => {
       arr.push({
@@ -27,10 +30,8 @@ export default class Dashboard {
       });
     });
     console.log('obj', arr);
-    // TODO: Salvar objeto
-  }
-}
 
-function removeRow(id) {
-  console.log(id)
+    // TODO: Salvar objeto
+    axios.put(`${BASE_PATH}/sellers/${userId}`, { sales: arr });
+  }
 }
