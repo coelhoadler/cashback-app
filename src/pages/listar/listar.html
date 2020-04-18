@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cashback App - Listar</title>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand mb-0 h1" href="#">Cashback app</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Vendas
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="dashboard.html">Cadastrar</a>
+            <a class="dropdown-item" href="listar.html">Listar</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="navbar-logout" href="#">Sair</a>
+        </li>
+      </ul>
+      <div class="my-2 my-lg-0 d-none d-sm-block">
+        <h4>Seja bem vindo <span id="currentUserName"></span>!</h4>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container mt-5 col-11 col-sm-11 col-md-11">
+    <div class="col-12 text-center card-header">Compras realizadas</div>
+    <table class="table table-sm table-responsive-md mt-3">
+      <thead>
+        <tr>
+          <th class="text-center" scope="col"><h5>Código</h5></th>
+          <th class="text-center" scope="col"><h5>Valor (R$)</h5></th>
+          <th class="text-center" scope="col"><h5>Data</h5></th>
+          <th class="text-center" scope="col"><h5>Status</h5></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+
+
+</body>
+</html>
