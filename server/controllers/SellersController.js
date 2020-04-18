@@ -33,7 +33,7 @@ module.exports = {
     } else {
       return res.json({
         success: false,
-        message: 'Verifique seu e-§ ou senha.'
+        message: 'Verifique seu e-mail ou senha.'
       })
     }
 
@@ -90,6 +90,40 @@ module.exports = {
     const seller = await Seller.findOne({ _id: id });
     if (seller) {
       return res.json(seller.sales);
+    } else {
+      return res.json({
+        success: false,
+        message: 'Vendedor não encontrado.'
+      })
+    }
+  },
+  async updateSales(req, res) {
+    const { id, saleId } = req.params;
+    const seller = await Seller.findOne({ _id: id });
+    if (seller) {
+      const newSales = seller.sales.filter(sale => sale._id == saleId);
+
+      seller.sales = newSales;
+      seller.save();
+
+      return res.json(newSales);
+    } else {
+      return res.json({
+        success: false,
+        message: 'Vendedor não encontrado.'
+      })
+    }
+  },
+  async deleteSale(req, res) {
+    const { id, saleId } = req.params;
+    const seller = await Seller.findOne({ _id: id });
+    if (seller) {
+      const newSales = seller.sales.filter(sale => sale._id != saleId);
+
+      seller.sales = newSales;
+      seller.save();
+
+      return res.json(newSales);
     } else {
       return res.json({
         success: false,

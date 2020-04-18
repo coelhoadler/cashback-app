@@ -91,13 +91,12 @@ if (isPage('cadastro')) {
 }
 
 if (isPage('dashboard')) {
-  createMask();
-
+  createJqueryMask();
   let row = 0;
   $btnAddSale.addEventListener('click', () => {
     const table = document.querySelector('#table-body');
     table.insertAdjacentHTML('beforeend', dashboard.addNewRow(++row));
-    createMask();
+    createJqueryMask();
 
     const $btnRmSale = document.querySelectorAll('.rmSale');
     $btnRmSale.forEach(btn => {
@@ -119,8 +118,20 @@ if (isPage('listar')) {
   html.then(rows => {
     const table = document.querySelector('#table-body');
     table.insertAdjacentHTML('beforeend', rows);
-    createMask();
-  })
+    createJqueryMask();
+    const totalCashback = sumCashback();
+    document.querySelector('#total_cashbask').innerHTML = totalCashback;
+    document.querySelectorAll('.btnDeleteSale').forEach(
+      btn => {
+        btn.addEventListener('click', async ($event) => {
+          if (confirm('Deseja remover o registro?')) {
+            const saleId = $event.target.dataset.id;
+            const del = await Listar.deleteSale(currentUser.id, saleId);
+            document.querySelector(`#row-${saleId}`).remove();
+          }
+        })
+      });
+  });
 }
 
 // TODO: Criar classe de Utils
@@ -133,7 +144,7 @@ function hasLocalstorage() {
   return !!window.localStorage;
 }
 
-function createMask() {
+function createJqueryMask() {
   $('.money').mask('####,#0000,0', { reverse: true });
   $('.date').mask('00/00/0000');
 }
@@ -144,4 +155,14 @@ function isPage(pageName) {
 
 function isLoginPage() {
   return !!$btnLogin;
+}
+
+function sumCashback() {
+  let sum = 0;
+  document.querySelectorAll('.cashback').forEach(cash => {
+    const value = cash.innerHTML;
+    sum = sum + parseFloat(value.replace(/\b[^\d\W]+\b\$/g, '').trim());
+  });
+  console.log('total de:', sum.toFixed(2));
+  return sum.toFixed(2);
 }

@@ -48,27 +48,27 @@ Logo após, em uma aba do terminal, deixe o servidor rodando. Utilize o seguinte
 - Criar Tabela dinâmica dasboard (OK)
 
 17/06
-- Vinculando vendas com o revendedor logado
-- Criando nova API para atualizar vendas
-- Adicionar máscaras nos input
+- Vinculando vendas com o revendedor logado (OK)
+- Criando nova API para atualizar vendas (OK)
+- Adicionar máscaras nos input (OK)
 
 18/06
-- Validar entrada de campos do cadastro de compras
-- Mensagem de "login ou senha inválido(s)" no login
-- Tela de listagem de compras
-- Página de "Sobre o Sistema" (Modal)
+- Validar entrada de campos do cadastro de compras (OK)
+- Mensagem de "login ou senha inválido(s)" no login (OK)
+- Tela de listagem de compras (OK)
+- Verificar status da compra (OK)
+- Porcentagem de cashback (OK)
+- Cashback acumulado  (OK)
+- Página de "Sobre o Sistema" (Modal) (OK)
+- Criar mock da API de Cashback (OK)
 
 19/06
-
-
 
 Falta fazer
 
 - Resolver problema jquery
-- Melhoras estilos
+- Melhoras estilos / ícones
 - Validar entrada de campos do cadastro de revendedor
 - Mostrar alerta de "Cadastro realizado com sucesso"
-
-- Criar mock da API de Cashback
 - E2E (Cypress)
 - Deploy Firebase

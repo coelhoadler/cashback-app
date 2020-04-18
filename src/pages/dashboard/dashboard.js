@@ -8,7 +8,11 @@ export default class Dashboard {
               <td><input type="text" maxlength="6" placeholder="999999" class="form-control"></td>
               <td><input type="text" maxlength="6" placeholder="99.99" class="form-control money"></td>
               <td><input type="text" maxlength="6" placeholder="99/99/9999" class="form-control date"></td>
-              <td><button data-id="${id}" class="rmSale">-</button></td>
+              <td>
+                <button class="d-flex btn justify-content-center align-items-center rmSale">
+                  <span data-id="${id}" class="material-icons">remove</span>
+                </button>
+              </td>
             </tr>`;
   }
 

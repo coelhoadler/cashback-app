@@ -10,9 +10,11 @@ routes.get('/', (req, res) => {
 
 routes.get('/cashback', BoticarioController.show);
 
-routes.get('/sellers/:id', SellersController.getSales);
 routes.post('/sellers/auth', SellersController.auth);
 routes.post('/sellers', SellersController.store);
+routes.get('/sellers/:id', SellersController.getSales);
 routes.put('/sellers/:id', SellersController.update);
+routes.put('/sellers/:id/:saleId', SellersController.updateSales);
+routes.delete('/sellers/:id/:saleId', SellersController.deleteSale);
 
 module.exports = routes;

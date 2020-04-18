@@ -1,4 +1,5 @@
 @import "~bootstrap/scss/bootstrap";
+@import '~material-icons/iconfont/material-icons.scss';
 
 html {
   box-sizing: border-box;
@@ -29,4 +30,8 @@ body {
 
 .welcome {
   color: rgba(0, 0, 0, 0.5);
+}
+
+.font-cashback {
+  font-size: .8rem;
 }
