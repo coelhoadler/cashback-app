@@ -1,8 +1,8 @@
 {
-  "name": "webpack-4-boilerplate",
+  "name": "cashback-app",
   "version": "1.0.0",
-  "description": "Boilerplate for modern javascript development using webpack 4",
-  "author": "Fin Mavis",
+  "description": "Sistema de cashback utilizado por revendores.",
+  "author": "Adler Coelho Santos",
   "license": "MIT",
   "engines": {
     "node": ">=12.16.1"
@@ -44,7 +44,8 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "core-js": "^3.6.4",
-    "jquery": "^3.5.0",
+    "jquery": "~3.4.1",
+    "jquery-mask-plugin": "^1.14.16",
     "popper.js": "^1.16.1",
     "prettier": "^2.0.4"
   },

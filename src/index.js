@@ -1,5 +1,7 @@
 import './styles.scss';
+
 import 'bootstrap';
+import 'jquery-mask-plugin';
 
 import Cadastro from './pages/cadastro';
 import Dashboard from './pages/dashboard/dashboard';
@@ -63,6 +65,11 @@ if ($btnLogin) {
 
 // Dashboard
 if ($btnAddSale) {
+
+  document
+    .querySelector('#currentUserName')
+    .innerHTML = currentUser.name.split(' ')[0];
+
   let row = 0;
   $btnAddSale.addEventListener('click', () => {
     const table = document.querySelector('#table-body');

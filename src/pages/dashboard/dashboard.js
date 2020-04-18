@@ -5,9 +5,9 @@ export default class Dashboard {
 
   addNewRow(id) {
     return `<tr id="row-${id}">
-              <td><input type="text"></td>
-              <td><input type="text"></td>
-              <td><input type="text"></td>
+              <td><input type="text" maxlength="6" placeholder="999999" class="form-control"></td>
+              <td><input type="text" maxlength="6" data-mask="0#" placeholder="99.99" class="form-control"></td>
+              <td><input type="text" maxlength="6" data-mask="00/00/0000" placeholder="99/99/9999" class="form-control"></td>
               <td><button data-id="${id}" class="rmSale">-</button></td>
             </tr>`;
   }
