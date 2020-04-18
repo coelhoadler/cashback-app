@@ -51,7 +51,7 @@ module.exports = {
     }
 
     try {
-      const seller = await Seller.create({
+      await Seller.create({
         name,
         email,
         password,
@@ -72,17 +72,25 @@ module.exports = {
   async update(req, res) {
     const { id } = req.params;
     const { sales } = req.body;
-
     const seller = await Seller.findOne({ _id: id });
+    sales.forEach(sale => seller.sales.push(sale));
 
     if (seller) {
-      seller.sales = sales;
-
-      console.log('seller completo', seller);
-
       seller.save();
 
       return res.json(seller);
+    } else {
+      return res.json({
+        success: false,
+        message: 'Vendedor não encontrado.'
+      })
+    }
+  },
+  async getSales(req, res) {
+    const { id } = req.params;
+    const seller = await Seller.findOne({ _id: id });
+    if (seller) {
+      return res.json(seller.sales);
     } else {
       return res.json({
         success: false,

@@ -19,18 +19,16 @@
             Vendas
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="dashboard.html">Cadastrar</a>
+            <a class="dropdown-item" href="listar.html">Listar</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Sair</a>
+          <a class="nav-link" id="navbar-logout" href="#">Sair</a>
         </li>
       </ul>
       <div class="my-2 my-lg-0 d-none d-sm-block">
-        <h4>Seja bem vindo <span id="currentUserName">Adler</span>!</h4>
+        <h4>Seja bem vindo <span id="currentUserName"></span>!</h4>
       </div>
     </div>
   </nav>
@@ -49,8 +47,8 @@
       <tbody id="table-body">
         <tr id="row-0">
           <td><input type="text" maxlength="6" placeholder="ABCDF2" class="form-control"></td>
-          <td><input type="text" maxlength="6" data-mask="0#" placeholder="99.99" class="form-control"></td>
-          <td><input type="text" maxlength="6" data-mask="00/00/0000" placeholder="99/99/9999" class="form-control"></td>
+          <td><input type="text" maxlength="6" placeholder="99.99" class="form-control money"></td>
+          <td><input type="text" maxlength="6" placeholder="99/99/9999" class="form-control date"></td>
           <td><button id="addSale">+</button></td>
         </tr>
       </tbody>

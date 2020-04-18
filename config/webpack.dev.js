@@ -179,12 +179,16 @@ module.exports = {
       filename: 'index.html',
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(ROOT_DIRECTORY, 'src/pages/cadastro.html'),
+      template: path.resolve(ROOT_DIRECTORY, 'src/pages/cadastro/cadastro.html'),
       filename: 'cadastro.html',
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(ROOT_DIRECTORY, 'src/pages/dashboard/dashboard.html'),
       filename: 'dashboard.html',
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(ROOT_DIRECTORY, 'src/pages/listar/listar.html'),
+      filename: 'listar.html',
     }),
   ],
 };
