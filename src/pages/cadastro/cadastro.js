@@ -1,17 +1,16 @@
-const axios = require('axios');
-const BASE_PATH = 'http://localhost:3000';
+const axios = require('../utils/conf');
 
 export default class Cadastro {
 
   constructor() { }
 
   async post(payload) {
-    const newSeller = await axios.post(`${BASE_PATH}/sellers`, payload);
+    const newSeller = await axios.post(`/sellers`, payload);
     return newSeller;
   }
 
   async login(payload) {
-    const seller = await axios.post(`${BASE_PATH}/sellers/auth`, payload);
+    const seller = await axios.post(`/sellers/auth`, payload);
     return seller;
   }
 }

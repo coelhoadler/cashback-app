@@ -1,5 +1,5 @@
-const axios = require('axios');
-const BASE_PATH = 'http://localhost:3000';
+const axios = require('../utils/conf');
+
 export default class Dashboard {
   constructor() { }
 
@@ -29,6 +29,6 @@ export default class Dashboard {
       });
     });
 
-    return axios.put(`${BASE_PATH}/sellers/${userId}`, { sales: arr });
+    return axios.put(`/sellers/${userId}`, { sales: arr });
   }
 }

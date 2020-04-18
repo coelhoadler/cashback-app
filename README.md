@@ -53,20 +53,22 @@ Logo após, em uma aba do terminal, deixe o servidor rodando. Utilize o seguinte
 - Adicionar máscaras nos input
 
 18/06
+- Validar entrada de campos do cadastro de compras
+- Mensagem de "login ou senha inválido(s)" no login
+- Tela de listagem de compras
+- Página de "Sobre o Sistema" (Modal)
 
 19/06
 
 
 
 Falta fazer
-- Mensagem de "login ou senha inválido(s)" no login
 
-- Validar entrada de campos do cadastro de revendedor
 - Resolver problema jquery
-- Validar entrada de campos do cadastro de compras
+- Melhoras estilos
+- Validar entrada de campos do cadastro de revendedor
 - Mostrar alerta de "Cadastro realizado com sucesso"
-- Tela de listagem de compras
-- Criar mock da API de Cashback
-- Página de "Sobre o Sistema" (Modal)
-- E2E (Cypress)
 
+- Criar mock da API de Cashback
+- E2E (Cypress)
+- Deploy Firebase

@@ -1,12 +1,11 @@
-const axios = require('axios');
-const BASE_PATH = 'http://localhost:3000';
+const axios = require('../utils/conf');
 
 export default class Listar {
 
   constructor() { }
 
   static async getSales(userId) {
-    const sales = await axios.get(`${BASE_PATH}/sellers/${userId}`);
+    const sales = await axios.get(`/sellers/${userId}`);
     const salesData = sales.data;
 
     let html = '';
