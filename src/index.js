@@ -1,23 +1,22 @@
 import './styles.scss';
-
-import $ from 'jquery'
 import 'bootstrap';
 import 'jquery-mask-plugin';
 
 import Cadastro from './pages/cadastro/cadastro';
 import Dashboard from './pages/dashboard/dashboard';
 import Listar from './pages/listar/listar';
+import Utils from './pages/utils/Utils';
 
-const $btnCadastro = document.querySelector('#newSeller');
-const $btnLogin = document.querySelector('#formLogin');
-const $navbarLogout = document.querySelector('#navbar-logout');
-
-const $btnAddSale = document.querySelector('#addSale');
-const $btnSaveSales = document.querySelector('#saveSales');
+const $$ = $.noConflict();
+const $btnCadastro = Utils.querySelector('#newSeller');
+const $btnLogin = Utils.querySelector('#formLogin');
+const $navbarLogout = Utils.querySelector('#navbar-logout');
+const $btnAddSale = Utils.querySelector('#addSale');
+const $btnSaveSales = Utils.querySelector('#saveSales');
 
 let currentUser = undefined;
 
-if (hasLocalstorage()) {
+if (Utils.hasLocalstorage()) {
   currentUser = JSON.parse(window.localStorage.getItem('currentUser'));
   if (currentUser) {
     const spanUsername = document.querySelector('#currentUserName');
@@ -27,50 +26,50 @@ if (hasLocalstorage()) {
         .innerHTML = currentUser.name.split(' ')[0];
     }}
   } else {
-    if (!$btnLogin && !isPage('cadastro')) {
-      window.location.href = '/';
+    if (!$btnLogin && !Utils.isPage('cadastro')) {
+      Utils.changeHref('/');
     }
   }
 } else {
-  window.location.href = '/';
+  Utils.changeHref('/');
 }
 
 if ($navbarLogout) {
   $navbarLogout.addEventListener('click', () => {
     window.localStorage.clear();
-    window.location.href = '/';
+    Utils.changeHref('/');
   })
 }
 
-if (isLoginPage()) {
+if (Utils.isLoginPage()) {
   $btnLogin.addEventListener('click', async ($event) => {
     $event.preventDefault();
-    const email = querySelector('email');
-    const password = querySelector('password');
+    const email = Utils.querySelector('#email').value;
+    const password = Utils.querySelector('#password').value;
     try {
       const currentUser = await Cadastro.login({email, password: btoa(password)});
       if (currentUser.data.id) {
-        if (hasLocalstorage()) {
+        if (Utils.hasLocalstorage()) {
           window.localStorage.setItem('currentUser', JSON.stringify(currentUser.data));
         }
-        window.location.href = "/dashboard.html";
+        Utils.changeHref('/dashboard.html');
       } else {
-        document.querySelector('.alert').classList.remove('d-none');
+        $$('.alert').removeClass('d-none');
       }
     } catch ($y) {
-      document.querySelector('.alert').classList.remove('d-none');
+      $$('.alert').removeClass('d-none');
     }
   });
 }
 
-if (isPage('cadastro')) {
-  resetUserForm();
+if (Utils.isPage('cadastro')) {
+  Utils.resetUserForm();
   $btnCadastro.addEventListener('click', () => {
-    const nameInput = querySelector('nameInput');
-    const documentInput = querySelector('documentInput');
-    const emailInput = querySelector('emailInput');
-    const passwordInput = querySelector('passwordInput');
-    const passwordConfirmInput = querySelector('passwordConfirmInput');
+    const nameInput = Utils.querySelector('#nameInput').value;
+    const documentInput = Utils.querySelector('#documentInput').value;
+    const emailInput = Utils.querySelector('#emailInput').value;
+    const passwordInput = Utils.querySelector('#passwordInput').value;
+    const passwordConfirmInput = Utils.querySelector('#passwordConfirmInput').value;
 
     if (nameInput.split(" ").length <= 1) {
       alert("Entre com um sobrenome!");
@@ -95,15 +94,14 @@ if (isPage('cadastro')) {
           email: emailInput,
           password: btoa(`${passwordInput}`)
         });
-
         res
           .then(res => res.data)
           .then(data => {
           if (data.success) {
             alert('Cadastro realizado com sucesso!');
-            window.location.href = '/';
+            Utils.changeHref('/');
           } else {
-            alert(data.message)
+            alert(data.message);
           }
         });
       } else {
@@ -117,13 +115,13 @@ if (isPage('cadastro')) {
   });
 }
 
-if (isPage('dashboard')) {
-  createJqueryMask();
+if (Utils.isPage('dashboard')) {
+  Utils.createJqueryMask();
   let row = 0;
   $btnAddSale.addEventListener('click', () => {
     const table = document.querySelector('#table-body');
     table.insertAdjacentHTML('beforeend', Dashboard.addNewRow(++row));
-    createJqueryMask();
+    Utils.createJqueryMask();
 
     const $btnRmSale = document.querySelectorAll('.rmSale');
     $btnRmSale.forEach(btn => {
@@ -142,62 +140,26 @@ if (isPage('dashboard')) {
   });
 }
 
-if (isPage('listar')) {
+if (Utils.isPage('listar')) {
   const html = Listar.getSales(currentUser.id);
   html.then(rows => {
     if (rows.length) {
-      document.querySelector('.not-found').remove();
+      $('.not-found').remove();
     }
     const table = document.querySelector('#table-body');
     table.insertAdjacentHTML('beforeend', rows);
-    createJqueryMask();
-    document.querySelector('#total_cashbask').innerHTML = sumCashback();
+    Utils.createJqueryMask();
+    document.querySelector('#total_cashbask').innerHTML = Utils.sumCashback();
     document.querySelectorAll('.btnDeleteSale').forEach(
       btn => {
         btn.addEventListener('click', async ($event) => {
           if (confirm('Deseja remover o registro?')) {
             const saleId = $event.target.dataset.id;
-            const del = await Listar.deleteSale(currentUser.id, saleId);
+            await Listar.deleteSale(currentUser.id, saleId);
             document.querySelector(`#row-${saleId}`).remove();
-            document.querySelector('#total_cashbask').innerHTML = sumCashback();
+            document.querySelector('#total_cashbask').innerHTML = Utils.sumCashback();
           }
         })
       });
   });
-}
-
-// TODO: Criar classe de Utils
-
-function querySelector(id) {
-  return document.querySelector(`#${id}`).value;
-}
-
-function hasLocalstorage() {
-  return !!window.localStorage;
-}
-
-function createJqueryMask() {
-  $('.money').mask('####,#0000,0', { reverse: true });
-  $('.date').mask('00/00/0000');
-}
-
-function isPage(pageName) {
-  return window.location.href.includes(pageName);
-}
-
-function isLoginPage() {
-  return !!$btnLogin;
-}
-
-function sumCashback() {
-  let sum = 0;
-  document.querySelectorAll('.cashback').forEach(cash => {
-    const value = cash.innerHTML;
-    sum = sum + parseFloat(value.replace(/\b[^\d\W]+\b\$/g, '').trim());
-  });
-  return sum.toFixed(2);
-}
-
-function resetUserForm() {
-  document.querySelector("#newUserForm").reset();
 }
