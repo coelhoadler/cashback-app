@@ -1,5 +1,5 @@
 const path = require('path');
-
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -188,6 +188,56 @@ module.exports = {
         minifyCSS: true,
         minifyURLs: true,
       },
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(ROOT_DIRECTORY, 'src/pages/cadastro/cadastro.html'),
+      favicon: 'src/assets/favicon.ico',
+      filename: 'cadastro.html',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(ROOT_DIRECTORY, 'src/pages/dashboard/dashboard.html'),
+      favicon: 'src/assets/favicon.ico',
+      filename: 'dashboard.html',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
+    }),
+    new HtmlWebpackPlugin({
+      template: path.resolve(ROOT_DIRECTORY, 'src/pages/listar/listar.html'),
+      favicon: 'src/assets/favicon.ico',
+      filename: 'listar.html',
+      minify: {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
+    }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery"
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash:8].bundle.css',
