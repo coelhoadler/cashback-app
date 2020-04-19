@@ -31,7 +31,7 @@ No diretório raiz, execute o comando abaixo:
   npm test
 ```
 
-___Obs: Ao executar os testes, certifique se que o servidor Express está funcionando.___
+___Obs: Ao executar os testes, certifique se que o servidor Express esteja funcionando.___
 
 ## Gerando build do projeto
 Execute o seguinte comando:
@@ -41,3 +41,9 @@ npm run build
 ```
 
 Depois da execução do comando acima, será gerada uma pasta ___build___.
+
+
+
+[Endereço da aplicação](https://cashback-app-a8a45.web.app).
+
+(___Como o servidor está local, não conseguiremos trabalhar na aplicação de modo on-line.___)
