@@ -176,6 +176,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(ROOT_DIRECTORY, 'src/index.html'),
+      favicon: 'src/assets/favicon.ico',
       filename: 'index.html',
       minify: {
         collapseWhitespace: true,

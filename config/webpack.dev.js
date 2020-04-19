@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 const ROOT_DIRECTORY = process.cwd();
 console.log
@@ -154,6 +155,7 @@ module.exports = {
             options: {
               name: '[name].[contenthash:8].[ext]',
               limit: 4096,
+              publicPath: 'assets',
               outputPath: 'assets',
             },
           },
@@ -176,19 +178,28 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(ROOT_DIRECTORY, 'src/index.html'),
+      favicon: 'src/assets/favicon.ico',
       filename: 'index.html',
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(ROOT_DIRECTORY, 'src/pages/cadastro/cadastro.html'),
+      favicon: 'src/assets/favicon.ico',
       filename: 'cadastro.html',
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(ROOT_DIRECTORY, 'src/pages/dashboard/dashboard.html'),
+      favicon: 'src/assets/favicon.ico',
       filename: 'dashboard.html',
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(ROOT_DIRECTORY, 'src/pages/listar/listar.html'),
+      favicon: 'src/assets/favicon.ico',
       filename: 'listar.html',
     }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery"
+    })
   ],
 };
