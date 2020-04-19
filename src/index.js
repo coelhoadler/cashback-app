@@ -8,9 +8,6 @@ import Cadastro from './pages/cadastro/cadastro';
 import Dashboard from './pages/dashboard/dashboard';
 import Listar from './pages/listar/listar';
 
-const cadastro = new Cadastro();
-const dashboard = new Dashboard();
-
 const $btnCadastro = document.querySelector('#newSeller');
 const $btnLogin = document.querySelector('#formLogin');
 const $navbarLogout = document.querySelector('#navbar-logout');
@@ -18,9 +15,8 @@ const $navbarLogout = document.querySelector('#navbar-logout');
 const $btnAddSale = document.querySelector('#addSale');
 const $btnSaveSales = document.querySelector('#saveSales');
 
-// TODO: implementar guard
-
 let currentUser = undefined;
+
 if (hasLocalstorage()) {
   currentUser = JSON.parse(window.localStorage.getItem('currentUser'));
   if (currentUser) {
@@ -30,6 +26,10 @@ if (hasLocalstorage()) {
         .querySelector('#currentUserName')
         .innerHTML = currentUser.name.split(' ')[0];
     }}
+  } else {
+    if (!$btnLogin && !isPage('cadastro')) {
+      window.location.href = '/';
+    }
   }
 } else {
   window.location.href = '/';
@@ -47,10 +47,8 @@ if (isLoginPage()) {
     $event.preventDefault();
     const email = querySelector('email');
     const password = querySelector('password');
-    const cadastro = new Cadastro();
-
     try {
-      const currentUser = await cadastro.login({email, password: btoa(password)});
+      const currentUser = await Cadastro.login({email, password: btoa(password)});
       if (currentUser.data.id) {
         if (hasLocalstorage()) {
           window.localStorage.setItem('currentUser', JSON.stringify(currentUser.data));
@@ -66,6 +64,7 @@ if (isLoginPage()) {
 }
 
 if (isPage('cadastro')) {
+  resetUserForm();
   $btnCadastro.addEventListener('click', () => {
     const nameInput = querySelector('nameInput');
     const documentInput = querySelector('documentInput');
@@ -73,19 +72,47 @@ if (isPage('cadastro')) {
     const passwordInput = querySelector('passwordInput');
     const passwordConfirmInput = querySelector('passwordConfirmInput');
 
+    if (nameInput.split(" ").length <= 1) {
+      alert("Entre com um sobrenome!");
+      return false;
+    }
+
+    if (!emailInput) {
+      alert("Entre com um e-mail!");
+      return false;
+    }
+
+    if (!documentInput) {
+      alert("Entre com um CPF!");
+      return false;
+    }
+
     if (passwordInput && passwordConfirmInput) {
       if (passwordInput === passwordConfirmInput) {
-        cadastro.post({
+        const res = Cadastro.post({
           name: nameInput,
           document: documentInput,
           email: emailInput,
           password: btoa(`${passwordInput}`)
         });
+
+        res
+          .then(res => res.data)
+          .then(data => {
+          if (data.success) {
+            alert('Cadastro Efetuado com sucesso!');
+            window.location.href = '/';
+          } else {
+            alert(data.message)
+          }
+        });
       } else {
-        console.log('Senhas diferentes!');
+        alert('As senhas  estão diferentes!');
+        return false;
       }
     } else {
-      console.log('Digite as senhas');
+      alert('Digite a senha!');
+      return false;
     }
   });
 }
@@ -95,27 +122,32 @@ if (isPage('dashboard')) {
   let row = 0;
   $btnAddSale.addEventListener('click', () => {
     const table = document.querySelector('#table-body');
-    table.insertAdjacentHTML('beforeend', dashboard.addNewRow(++row));
+    table.insertAdjacentHTML('beforeend', Dashboard.addNewRow(++row));
     createJqueryMask();
 
     const $btnRmSale = document.querySelectorAll('.rmSale');
     $btnRmSale.forEach(btn => {
       btn.addEventListener('click', ($event) => {
         const id = $event.target.dataset.id;
-        dashboard.removeRow(id);
+        Dashboard.removeRow(id);
       });
     });
-
   });
 
   $btnSaveSales.addEventListener('click', () => {
-    dashboard.saveSales(currentUser.id);
+    if (confirm('Tem certeza que deseja salvar?')) {
+      Dashboard.saveSales(currentUser.id);
+      alert('Compras cadastradas com sucesso!');
+    }
   });
 }
 
 if (isPage('listar')) {
   const html = Listar.getSales(currentUser.id);
   html.then(rows => {
+    if (rows.length) {
+      document.querySelector('.not-found').remove();
+    }
     const table = document.querySelector('#table-body');
     table.insertAdjacentHTML('beforeend', rows);
     createJqueryMask();
@@ -163,6 +195,9 @@ function sumCashback() {
     const value = cash.innerHTML;
     sum = sum + parseFloat(value.replace(/\b[^\d\W]+\b\$/g, '').trim());
   });
-  console.log('total de:', sum.toFixed(2));
   return sum.toFixed(2);
+}
+
+function resetUserForm() {
+  document.querySelector("#newUserForm").reset();
 }

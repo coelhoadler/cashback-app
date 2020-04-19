@@ -8,26 +8,27 @@
 </head>
 
 <body>
-
   <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
-      <form class="card rounded p-4 col-11 col-md-12">
+      <form class="card rounded p-4 col-11 col-md-12" id="newUserForm">
+        <small class="mb-2"><i>** Todos os campos são necessários!</i></small>
         <div class="col-12 text-center card-header">Cadastro de revendedor</div>
         <div class="form-row mt-3">
           <div class="form-group col-sm-12 col-md-6">
             <label for="nameInput">Nome completo</label>
             <input type="text" class="form-control" id="nameInput" aria-describedby="Nome completo"
-              placeholder="Coloque seu nome completo">
+              placeholder="Coloque seu nome completo" autocomplete="off">
           </div>
           <div class="form-group col-sm-12 col-md-6">
             <label for="emailInput">E-mail</label>
-            <input type="email" class="form-control" id="emailInput" placeholder="xpto@xptop.com">
+            <input type="email" class="form-control" id="emailInput" placeholder="xpto@xptop.com" autocomplete="off">
           </div>
         </div>
         <div class="form-row">
           <div class="form-group col-sm-12 col-md-6">
             <label for="documentInput">CPF</label>
-            <input type="text" class="form-control" id="documentInput" data-mask="000.000.000-00" placeholder="999.999.99-99">
+            <input type="text" class="form-control" id="documentInput"
+              data-mask="000.000.000-00" placeholder="999.999.99-99" autocomplete="off">
           </div>
         </div>
 
@@ -37,12 +38,12 @@
           <div class="form-group col-sm-12 col-md-6">
             <label for="passwordInput">Senha</label>
             <input type="password" class="form-control" id="passwordInput" maxlength="8"
-              placeholder="Capriche na senha!">
+              placeholder="Capriche na senha!" autocomplete="off">
           </div>
           <div class="form-group col-sm-12 col-md-6">
             <label for="passwordConfirmInput">Confirme sua senha</label>
             <input type="password" class="form-control" id="passwordConfirmInput" maxlength="8"
-              placeholder="Confirme sua senha">
+              placeholder="Confirme sua senha" autocomplete="off" >
           </div>
         </div>
 

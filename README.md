@@ -24,6 +24,13 @@ Logo após, em uma aba do terminal, deixe o servidor rodando. Utilize o seguinte
   npm run server
 ```
 
+## Rodando os testes e2e
+No diretório raiz, execute o comando abaixo:
+
+```
+  npm test
+```
+
 # Lista de afazeres
 
 14/04
@@ -61,14 +68,13 @@ Logo após, em uma aba do terminal, deixe o servidor rodando. Utilize o seguinte
 - Cashback acumulado  (OK)
 - Página de "Sobre o Sistema" (Modal) (OK)
 - Criar mock da API de Cashback (OK)
+- Mostrar alerta de "Cadastro realizado com sucesso" (OK)
+- Validar entrada de campos do cadastro de revendedor (OK)
 
 19/06
 
 Falta fazer
-
-- Resolver problema jquery
+- Edicão da listagem
+- olhar geracão pasta assets
 - Melhoras estilos / ícones
-- Validar entrada de campos do cadastro de revendedor
-- Mostrar alerta de "Cadastro realizado com sucesso"
 - E2E (Cypress)
-- Deploy Firebase

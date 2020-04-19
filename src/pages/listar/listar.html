@@ -1,27 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cashback App - Listar</title>
 </head>
+
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand mb-0 h1" href="#">Cashback app</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             Vendas
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="dashboard.html">Cadastrar</a>
             <a class="dropdown-item" href="listar.html">Listar</a>
           </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#aboutMe">Sobre</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="navbar-logout" href="#">Sair</a>
@@ -36,7 +43,6 @@
   <div class="container mt-5 col-11 col-sm-11 col-md-11">
 
     <div class="row col-12 mb-5">
-
       <span class="badge badge-light">Cashback acumulado: R$ <span id="total_cashbask">0,00</span></span>
     </div>
 
@@ -44,15 +50,60 @@
     <table class="table table-sm table-responsive-md mt-3">
       <thead>
         <tr>
-          <th class="text-center" scope="col"><h5>Código</h5></th>
-          <th class="text-center" scope="col"><h5>Valor (R$)</h5></th>
-          <th class="text-center" scope="col"><h5>Data</h5></th>
-          <th class="text-center" scope="col"><h5>Cashback</h5></th>
-          <th class="text-center" scope="col"><h5>Status</h5></th>
+          <th class="text-center" scope="col">
+            <h5>Código</h5>
+          </th>
+          <th class="text-center" scope="col">
+            <h5>Valor (R$)</h5>
+          </th>
+          <th class="text-center" scope="col">
+            <h5>Data</h5>
+          </th>
+          <th class="text-center" scope="col">
+            <h5>Valor do Cashback</h5>
+          </th>
+          <th class="text-center" scope="col">
+            <h5>Status</h5>
+          </th>
           <th></th>
         </tr>
       </thead>
-      <tbody id="table-body"></tbody>
+      <tbody id="table-body">
+        <tr>
+          <th colspan="6" class="not-found text-left" scope="col">Nenhuma compra encontrada.</th>
+        </tr>
+      </tbody>
     </table>
+
+    <div class="modal fade" id="aboutMe" tabindex="-1" role="dialog" aria-labelledby="aboutMeLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="aboutMeLabel">Sobre o Dev</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p><i>Meu nome é <strong>Adler Coelho Santos</strong>, se você gostou desse modelo de sistema, entre em
+                contato comigo e compartilhe suas experiências para melhorarmos. Sou desenvolvedor porque acredito
+                códigos mudam vidas!</i></p>
+            <hr />
+            <p class="row align-items-center">
+              <span class="material-icons pl-3 pr-2">email</span>
+              E-mail: adler.coelho.santos@icloud.com
+            </p>
+            <p class="row align-items-center">
+              <span class="material-icons pl-3 pr-2">phone</span>
+              Celular: (13) 99627 5325
+            </p>
+          </div>
+          <div class="modal-footer">
+            <h6>Criado em Abril de 2020</h6>
+          </div>
+        </div>
+      </div>
+    </div>
 </body>
+
 </html>
