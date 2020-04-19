@@ -151,8 +151,7 @@ if (isPage('listar')) {
     const table = document.querySelector('#table-body');
     table.insertAdjacentHTML('beforeend', rows);
     createJqueryMask();
-    const totalCashback = sumCashback();
-    document.querySelector('#total_cashbask').innerHTML = totalCashback;
+    document.querySelector('#total_cashbask').innerHTML = sumCashback();
     document.querySelectorAll('.btnDeleteSale').forEach(
       btn => {
         btn.addEventListener('click', async ($event) => {
@@ -160,6 +159,7 @@ if (isPage('listar')) {
             const saleId = $event.target.dataset.id;
             const del = await Listar.deleteSale(currentUser.id, saleId);
             document.querySelector(`#row-${saleId}`).remove();
+            document.querySelector('#total_cashbask').innerHTML = sumCashback();
           }
         })
       });
