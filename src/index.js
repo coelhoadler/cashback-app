@@ -19,7 +19,7 @@ let currentUser = undefined;
 if (Utils.hasLocalstorage()) {
   currentUser = JSON.parse(window.localStorage.getItem('currentUser'));
   if (currentUser) {
-    const spanUsername = document.querySelector('#currentUserName');
+    const spanUsername = Utils.querySelector('#currentUserName');
     if (spanUsername) { {
       document
         .querySelector('#currentUserName')
@@ -119,11 +119,11 @@ if (Utils.isPage('dashboard')) {
   Utils.createJqueryMask();
   let row = 0;
   $btnAddSale.addEventListener('click', () => {
-    const table = document.querySelector('#table-body');
+    const table = Utils.querySelector('#table-body');
     table.insertAdjacentHTML('beforeend', Dashboard.addNewRow(++row));
     Utils.createJqueryMask();
 
-    const $btnRmSale = document.querySelectorAll('.rmSale');
+    const $btnRmSale = Utils.querySelectorAll('.rmSale');
     $btnRmSale.forEach(btn => {
       btn.addEventListener('click', ($event) => {
         const id = $event.target.dataset.id;
@@ -146,18 +146,18 @@ if (Utils.isPage('listar')) {
     if (rows.length) {
       $('.not-found').remove();
     }
-    const table = document.querySelector('#table-body');
+    const table = Utils.querySelector('#table-body');
     table.insertAdjacentHTML('beforeend', rows);
     Utils.createJqueryMask();
-    document.querySelector('#total_cashbask').innerHTML = Utils.sumCashback();
-    document.querySelectorAll('.btnDeleteSale').forEach(
+    Utils.querySelector('#total_cashbask').innerHTML = Utils.sumCashback();
+    Utils.querySelectorAll('.btnDeleteSale').forEach(
       btn => {
         btn.addEventListener('click', async ($event) => {
           if (confirm('Deseja remover o registro?')) {
             const saleId = $event.target.dataset.id;
             await Listar.deleteSale(currentUser.id, saleId);
-            document.querySelector(`#row-${saleId}`).remove();
-            document.querySelector('#total_cashbask').innerHTML = Utils.sumCashback();
+            Utils.querySelector(`#row-${saleId}`).remove();
+            Utils.querySelector('#total_cashbask').innerHTML = Utils.sumCashback();
           }
         })
       });
