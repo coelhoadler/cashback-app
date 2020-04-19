@@ -24,6 +24,8 @@ Logo após, em uma aba do terminal, deixe o servidor rodando. Utilize o seguinte
   npm run server
 ```
 
+___Obs: Ao executar os testes, suba o servidor primeiramente.___
+
 ## Rodando os testes e2e
 No diretório raiz, execute o comando abaixo:
 
@@ -72,9 +74,11 @@ No diretório raiz, execute o comando abaixo:
 - Validar entrada de campos do cadastro de revendedor (OK)
 
 19/06
+- E2E (Cypress)
+
 
 Falta fazer
 - Edicão da listagem
 - olhar geracão pasta assets
 - Melhoras estilos / ícones
-- E2E (Cypress)
+

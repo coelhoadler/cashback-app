@@ -17,4 +17,6 @@ routes.put('/sellers/:id', SellersController.update);
 routes.put('/sellers/:id/:saleId', SellersController.updateSales);
 routes.delete('/sellers/:id/:saleId', SellersController.deleteSale);
 
+routes.delete('/cypress/:userEmail/:userPassword', SellersController.deleteUser);
+
 module.exports = routes;

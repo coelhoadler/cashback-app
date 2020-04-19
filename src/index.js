@@ -100,14 +100,14 @@ if (isPage('cadastro')) {
           .then(res => res.data)
           .then(data => {
           if (data.success) {
-            alert('Cadastro Efetuado com sucesso!');
+            alert('Cadastro realizado com sucesso!');
             window.location.href = '/';
           } else {
             alert(data.message)
           }
         });
       } else {
-        alert('As senhas  estão diferentes!');
+        alert('As senhas estão diferentes!');
         return false;
       }
     } else {

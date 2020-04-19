@@ -130,5 +130,22 @@ module.exports = {
         message: 'Vendedor não encontrado.'
       })
     }
+  },
+  async deleteUser(req, res) {
+    const { userEmail, userPassword } = req.params;
+    const seller = await Seller.findOne({
+      $and: [
+        { email: { $eq: userEmail } },
+        { password: { $eq: userPassword }}
+      ]
+    });
+
+    if (seller) {
+      seller.remove();
+      return res.json({
+        success: true,
+        message: 'Usuário removido com sucesso!'
+      });
+    }
   }
 }
